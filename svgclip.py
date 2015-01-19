@@ -57,10 +57,10 @@ Height: %f""".strip() % tuple(bbox[1:]))
 
 def clip(inputfile, outputfile, margin):
     name, x, y, width, height = get_bounding_box(inputfile)
-    
+
     svg = rsvg.Handle(file=inputfile)
-    surface = cairo.SVGSurface(outputfile, 
-                               width + margin * 2, 
+    surface = cairo.SVGSurface(outputfile,
+                               width + margin * 2,
                                height + margin * 2)
     ctx = cairo.Context(surface)
     ctx.translate(-x + margin, -y + margin)
@@ -70,7 +70,7 @@ def clip(inputfile, outputfile, margin):
 def arg_parser():
     parser = argparse.ArgumentParser(description=
                                      'Clip SVG file to bounding box.')
-    parser.add_argument('input', 
+    parser.add_argument('input',
                         help="SVG file to read")
     parser.add_argument('-o', '--output',
                         help="SVG file to write",
@@ -88,6 +88,3 @@ if __name__ == "__main__":
         print_info(args.input)
     else:
         clip(args.input, args.output, args.margin)
-
-
-
